@@ -1,0 +1,329 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="API" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uwah="clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities" xmlns:uwahm="clr-namespace:UiPath.Web.Activities.Http.Models;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="v_s_BillingDocument" Type="OutArgument(x:String)" />
+    <x:Property Name="v_s_folio_dte" Type="InArgument(x:String)" />
+    <x:Property Name="a_pass" Type="InArgument(ss:SecureString)" />
+    <x:Property Name="a_user" Type="InArgument(x:String)" />
+    <x:Property Name="a_url_api" Type="InArgument(x:String)" />
+    <x:Property Name="a_pass_api" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Helpers.TypeDetailsCustomization</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Activities</x:String>
+      <x:String>UiPath.Platform.Activities</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Web.Activities.Http.Models</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Web.Activities.Http</x:String>
+      <x:String>UiPath.Sdk.Activities</x:String>
+      <x:String>UiPath.Sdk.Activities.DependencyInjection.Contracts</x:String>
+      <x:String>UiPath.Sdk.Activities.DependencyInjection</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Net.Primitives</AssemblyReference>
+      <AssemblyReference>System.Net.HttpListener</AssemblyReference>
+      <AssemblyReference>System.Net.WebProxy</AssemblyReference>
+      <AssemblyReference>System.Net.NameResolution</AssemblyReference>
+      <AssemblyReference>System.Net.WebHeaderCollection</AssemblyReference>
+      <AssemblyReference>System.Net.WebClient</AssemblyReference>
+      <AssemblyReference>System.Net.Requests</AssemblyReference>
+      <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="1235,1521" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="v_b_out_api" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="v_header_out_api" />
+      <Variable x:TypeArguments="x:String" Name="v_body_out_api" />
+      <Variable x:TypeArguments="uwahm:HttpResponseSummary" Name="v_s_response" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,337" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[v_s_BillingDocument]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["https://my438302-api.s4hana.cloud.sap/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/A_BillingDocument?$filter=DocumentReferenceID eq" + "'"+ v_s_folio_dte+ "'" + "&amp;$format=json"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <Assign sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="ss:SecureString">[a_pass]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="ss:SecureString">[New System.Net.NetworkCredential("", a_pass_api).SecurePassword]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,57" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[a_user]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["ZBILLING_API"]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" OAuthToken="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" TextPayload="{x:Null}" AuthenticationType="BasicUsernamePassword" BasicAuthSecurePassword="[a_pass]" BasicAuthUsername="[a_user]" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xD;&#xA;{&#xD;&#xA;&#x9;New FileFormDataPart(),&#xD;&#xA;&#x9;New BinaryFormDataPart(),&#xD;&#xA;&#x9;New TextFormDataPart()&#xD;&#xA;}]" sap:VirtualizedContainerService.HintSize="486,277" sap2010:WorkflowViewState.IdRef="NetHttpRequest_2" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" Parameters="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;$filter&quot;, &quot;DocumentReferenceID eq'&quot;+ v_s_folio_dte+&quot;'&quot; },{ &quot;$format&quot;, &quot;json&quot; } }]" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="[a_url_api]" Result="[v_s_response]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xD;&#xA;{&#xD;&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xD;&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+      <uwah:NetHttpRequest.TimeoutInMiliseconds>
+        <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+          <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
+        </InArgument>
+      </uwah:NetHttpRequest.TimeoutInMiliseconds>
+    </uwah:NetHttpRequest>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[v_s_response.TextContent]" />
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xD;&#xA;    ' Inicializar la variable de salida por seguridad&#xD;&#xA;    out_BillingDocument = String.Empty&#xD;&#xA;&#xD;&#xA;    ' 1. Validar que la cadena de entrada no esté vacía&#xD;&#xA;    If String.IsNullOrEmpty(in_ResponseString) Then&#xD;&#xA;        Return&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    ' 2. Parsear directamente el JSON puro de SAP&#xD;&#xA;    Dim sapObj As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(in_ResponseString)&#xD;&#xA;    &#xD;&#xA;    ' Obtener de forma directa el token d.results usando la ruta de puntos&#xD;&#xA;    Dim resultsToken As Newtonsoft.Json.Linq.JToken = sapObj.SelectToken(&quot;d.results&quot;)&#xD;&#xA;    &#xD;&#xA;    If resultsToken IsNot Nothing AndAlso TypeOf resultsToken Is Newtonsoft.Json.Linq.JArray Then&#xD;&#xA;        Dim resultsArray As Newtonsoft.Json.Linq.JArray = CType(resultsToken, Newtonsoft.Json.Linq.JArray)&#xD;&#xA;        &#xD;&#xA;        ' 3. Recorrer la lista buscando la coincidencia con el DocumentReferenceID&#xD;&#xA;        For Each result As Newtonsoft.Json.Linq.JToken In resultsArray&#xD;&#xA;            Dim refIdToken As Newtonsoft.Json.Linq.JToken = result.SelectToken(&quot;DocumentReferenceID&quot;)&#xD;&#xA;            Dim billDocToken As Newtonsoft.Json.Linq.JToken = result.SelectToken(&quot;BillingDocument&quot;)&#xD;&#xA;            &#xD;&#xA;            If refIdToken IsNot Nothing AndAlso billDocToken IsNot Nothing Then&#xD;&#xA;                Dim currentRefID As String = refIdToken.ToString().Trim()&#xD;&#xA;                &#xD;&#xA;                ' Comparar el ID buscado con el de SAP libre de espacios&#xD;&#xA;                If currentRefID.Equals(in_DocumentReferenceID.Trim()) Then&#xD;&#xA;                    out_BillingDocument = billDocToken.ToString()&#xD;&#xA;                    Exit For ' Coincidencia encontrada: Rompemos el bucle&#xD;&#xA;                End If&#xD;&#xA;            End If&#xD;&#xA;        Next&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;Catch ex As Exception&#xD;&#xA;    ' Reportar cualquier fallo de formato al log de UiPath&#xD;&#xA;    Throw New Exception(&quot;Error en el análisis del JSON directo de SAP: &quot; &amp; ex.Message)&#xD;&#xA;End Try" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="486,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+      <ui:InvokeCode.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ResponseString">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="v_s_response.TextContent" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_DocumentReferenceID">
+          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="v_s_folio_dte" />
+        </InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_BillingDocument">
+          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="v_s_BillingDocument" />
+        </OutArgument>
+      </ui:InvokeCode.Arguments>
+    </ui:InvokeCode>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,57" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,483" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WbU/bMBD+K5M/Tk3LAKGtmpD6BoQVGiDApAkhk1xb08Q2fqGEqv99ZyctMKqtk9C+jEptcufz89yd786dkT0GWao7ghvKOCjSnJGQS2tKPWn+mJFjmgNpkhzMWKSkRrpMy4wWlfpooY4L6WRtFOMjlE/hzjIFKWkaZaFWMvVFQg0THA3bIi3IvLbEtyp7Bd7jqRSMmzeAHwNNQeknJHFzC4lD3hMqpwY1KUvcZqqKryVNjaEwsjlwU2l2dz21loJrWJf6zoIq3oL4T0Q3Tn6dqi5oNkL7WQnQ8mTl2Zbv1YYDloILz2ZQrp7C0O/4tQIW+guaWW9K9nsxuZpfOV9eQJ6NxXQtyFBfCjUZZmLae5AKtPYRlvl9TRcNzmLcFJ27326v34t7TmzFnQPvBjry/8S6bkGi4cCalb39D5ujdOG9at+r9u8rJRG+aVddBaCxSIc007A+sJsS1d5IwT2DaUQVMhnXCjgtq6ut6Tu+Rs7xgsJWMUbqZqORF9tbn7c2NgMqWV1vjymn9SQTNq1rKhvuK6RtiJQa6qVWFF63w34/PN6/7g4650e94/j67PSigcgHVfshZ8sip2KPy9almiUfLieHh/FH/0HzjhAT5jNAZWCX6laSgHStSqXMWBlt41YjDK49qYKQY4BDmkDwDQo0V9vZl51n4LjMTVAleQXW96Cj1TCIxQSch/xEBffVdkzoib/smrM5vodcG8oTeJnWC3yWwX2qb9Q3Sk6O40ao0iHLJDXjwEXn8+djM+yemaLyah/wvwpLcGHgB9VijOHZLIoBs4rS8ggj4XUDCWqR2o4CasD53KHJGLBCxMTKxeCdLfVtJaYaVGggr/SRYjkOQvTWTVGcqxFNJnQEzyPb3PGh/ca/Fb7USJ/ykUUo1GF2sdbhwbQzkUw80/wn9Qan0bEJAAA=" ConnectionId="9a7b1bcb-c943-475a-8e34-3725cdffbbfb" DisplayName="Connector http activity" sap:VirtualizedContainerService.HintSize="416,423" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_3" UiPathActivityTypeId="3ea90bc0-176f-367e-81fd-45ffebeaa67f">
+            <isactr:ConnectorHttpActivity.FieldObjects>
+              <isactr:FieldObject Name="method" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">GET</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="url" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">/API_BILLING_DOCUMENT_SRV/A_BillingDocument</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="headers" Type="FieldArgument" />
+              <isactr:FieldObject Name="query" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)">
+                    <InArgument x:TypeArguments="x:String" x:Key="$filter">DocumentReferenceID eq'033-0000006511'</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="$format">json</InArgument>
+                  </scg:Dictionary>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="body" Type="FieldArgument" />
+              <isactr:FieldObject Name="out_headers" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[v_header_out_api]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_body" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:String">[v_body_out_api]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_code" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:Int32">[v_b_out_api]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+            </isactr:ConnectorHttpActivity.FieldObjects>
+          </isactr:ConnectorHttpActivity>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,57" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,598" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <isactr:ConnectorHttpActivity Configuration="H4sIAAAAAAAACu1WbU/bMBD+K5M/Tk3LAKGtmpD6EiCs0IwGmDQhZJJra5raxi+UrOp/39lJC4xq6yS0L6NSm9z5/Dx357tz5+SAQZ7pjuCGMg6KNOck4tKaUk+a3+fklE6BNMkUzFhkpEa6TMucFpX6ZKlOCulkbRTjI5TP4M4yBRlpGmWhVjL1REoNExwN2yIryKK2wrcqfwEe8kwKxs0rwI+BZqD0I5K4uYXUIR8INaUGNRlL3Waqis8lTY2hMLJT4KbS7O97ai0F17Ap9Z0FVbwG8Z+Ibpz8MlVd0GyE9vMSoOXJyrMt36sNRywDF57NoVw9g6Hf8WsFLPUXNLfelByGCblaXDlfnkEOxmK2EWSkL4WaDHMxCx+kAq19hGV+X9LF/UGCm+Jz99sNe2ESOrGVdI68G+jI/xPrpgWJhn1r1vb2P2yO0oW3qn2r2r+vlFT4pl13FYDGIh3SXMPmwG5KVHtjBfcMZjFVyGRcK+C0rK62pu/4GjnHCwpbxRipm43GtNjd+biztR1Qyep6d0w5rae5sFldU9lwXyFtQ2TUUC+14ui6HfV60enhdbffOT8JT5PrwdlFA5GPqvZDzpZFTsV+rFqXapa+u5wcHyfv/QfNO0JMmM8AlYFdqVtpCtK1KpUyZ2W0jVuNMLj2qAoijgEOaQrBFyjQXO3mn/aegOMyN0GV5DVY34KOVsMgERNwHp4MhuFBtR0T+tVfds35At8jrg3lKTxP6wU+y+A+1LfqWyUnx3EjVOmQZZKaceCi8/nzsRl2z0xReXUI+F+FpbjQ94NqOcbwbJbFgFlFaXWEsfC6vgS1TG1HATXgfO7QdAxYIWJi5XLwzlf6thIzDSoyMK30sWJTHITorZuiOFdjmk7oCJ5Gtr3nQ/uNf2t8qZEe5SOLUKjD7GKtw4Np5yKdeKbFT6dFQmSxCQAA" ConnectionId="88f036d8-b60c-4641-8e65-f56f6e59fa27" DisplayName="Connector http activity" sap:VirtualizedContainerService.HintSize="416,538" sap2010:WorkflowViewState.IdRef="ConnectorHttpActivity_1" UiPathActivityTypeId="3ea90bc0-176f-367e-81fd-45ffebeaa67f">
+            <isactr:ConnectorHttpActivity.FieldObjects>
+              <isactr:FieldObject Name="method" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">GET</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="url" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <InArgument x:TypeArguments="x:String">/A_BillingDocument</InArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="headers" Type="FieldArgument" />
+              <isactr:FieldObject Name="query" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)">
+                    <InArgument x:TypeArguments="x:String" x:Key="$filter">DocumentReferenceID eq'033-0000006511'</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="$format">json</InArgument>
+                  </scg:Dictionary>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="body" Type="FieldArgument" />
+              <isactr:FieldObject Name="out_headers" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[v_header_out_api]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_body" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:String">[v_body_out_api]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+              <isactr:FieldObject Name="out_code" Type="FieldArgument">
+                <isactr:FieldObject.Value>
+                  <OutArgument x:TypeArguments="x:Int32">[v_b_out_api]</OutArgument>
+                </isactr:FieldObject.Value>
+              </isactr:FieldObject>
+            </isactr:ConnectorHttpActivity.FieldObjects>
+          </isactr:ConnectorHttpActivity>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;&quot;]" />
+  </Sequence>
+</Activity>
