@@ -1,11 +1,8 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="API" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uwah="clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities" xmlns:uwahm="clr-namespace:UiPath.Web.Activities.Http.Models;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="a_pedido" Type="InArgument(x:String)" />
     <x:Property Name="v_s_BillingDocument" Type="OutArgument(x:String)" />
-    <x:Property Name="v_s_folio_dte" Type="InArgument(x:String)" />
-    <x:Property Name="a_pass" Type="InArgument(ss:SecureString)" />
-    <x:Property Name="a_user" Type="InArgument(x:String)" />
-    <x:Property Name="a_url_api" Type="InArgument(x:String)" />
-    <x:Property Name="a_pass_api" Type="InArgument(x:String)" />
+    <x:Property Name="v_s_folio_dte" Type="OutArgument(x:String)" />
   </x:Members>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
@@ -28,8 +25,6 @@
       <x:String>System.IO</x:String>
       <x:String>System.Net.Mail</x:String>
       <x:String>UiPath.Core</x:String>
-      <x:String>GlobalVariablesNamespace</x:String>
-      <x:String>GlobalConstantsNamespace</x:String>
       <x:String>System.Reflection</x:String>
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>UiPath.Core.Activities.Orchestrator</x:String>
@@ -49,6 +44,8 @@
       <x:String>UiPath.Sdk.Activities.DependencyInjection.Contracts</x:String>
       <x:String>UiPath.Sdk.Activities.DependencyInjection</x:String>
       <x:String>UiPath.Web.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -113,21 +110,27 @@
       <AssemblyReference>System.Net.Requests</AssemblyReference>
       <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1235,1521" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="918,1727" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="v_b_out_api" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:Object)" Name="v_header_out_api" />
       <Variable x:TypeArguments="x:String" Name="v_body_out_api" />
       <Variable x:TypeArguments="uwahm:HttpResponseSummary" Name="v_s_response" />
+      <Variable x:TypeArguments="ss:SecureString" Name="v_pass_billing_document" />
+      <Variable x:TypeArguments="x:String" Name="v_user_billing_document" />
+      <Variable x:TypeArguments="x:String" Name="v_url_api_billing_document" />
+      <Variable x:TypeArguments="ss:SecureString" Name="v_pass_api" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,337" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+    <ui:CommentOut sap2010:Annotation.AnnotationText="Con el numero de pedido va a buscar el folio o del dte (factura electronica)" DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,368" sap2010:WorkflowViewState.IdRef="CommentOut_6">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_7">
           <sap:WorkflowViewStateService.ViewState>
@@ -145,13 +148,34 @@
           </Assign>
         </Sequence>
       </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <Assign sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
-        <OutArgument x:TypeArguments="ss:SecureString">[a_pass]</OutArgument>
+        <OutArgument x:TypeArguments="ss:SecureString">[v_pass_billing_document]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="ss:SecureString">[New System.Net.NetworkCredential("", a_pass_api).SecurePassword]</InArgument>
+        <InArgument x:TypeArguments="ss:SecureString">[parametro_pass_api_billing_document]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="Assign_7">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[v_user_billing_document]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[parametro_user_api_bdoc]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -170,7 +194,7 @@
           </sap:WorkflowViewStateService.ViewState>
           <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_3">
             <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[a_user]</OutArgument>
+              <OutArgument x:TypeArguments="x:String">[v_user_billing_document]</OutArgument>
             </Assign.To>
             <Assign.Value>
               <InArgument x:TypeArguments="x:String">["ZBILLING_API"]</InArgument>
@@ -191,7 +215,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" OAuthToken="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" TextPayload="{x:Null}" AuthenticationType="BasicUsernamePassword" BasicAuthSecurePassword="[a_pass]" BasicAuthUsername="[a_user]" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xD;&#xA;{&#xD;&#xA;&#x9;New FileFormDataPart(),&#xD;&#xA;&#x9;New BinaryFormDataPart(),&#xD;&#xA;&#x9;New TextFormDataPart()&#xD;&#xA;}]" sap:VirtualizedContainerService.HintSize="486,277" sap2010:WorkflowViewState.IdRef="NetHttpRequest_2" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" Parameters="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;$filter&quot;, &quot;DocumentReferenceID eq'&quot;+ v_s_folio_dte+&quot;'&quot; },{ &quot;$format&quot;, &quot;json&quot; } }]" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="[a_url_api]" Result="[v_s_response]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xD;&#xA;{&#xD;&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xD;&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xD;&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
+    <uwah:NetHttpRequest BasicAuthPassword="{x:Null}" BinaryPayload="{x:Null}" ClientCertPassword="{x:Null}" ClientCertPath="{x:Null}" ClientCertSecurePassword="{x:Null}" Cookies="{x:Null}" CustomNegotiatedAuthCredentials="{x:Null}" FilePath="{x:Null}" FormData="{x:Null}" Headers="{x:Null}" LocalFiles="{x:Null}" OAuthToken="{x:Null}" OutputFileName="{x:Null}" OutputFileTargetFolder="{x:Null}" PathResource="{x:Null}" ProxyConfiguration="{x:Null}" ResourceFiles="{x:Null}" TextPayload="{x:Null}" AuthenticationType="BasicUsernamePassword" BasicAuthSecurePassword="[v_pass_billing_document]" BasicAuthUsername="[v_user_billing_document]" ContinueOnError="True" DisableSslVerification="False" DisplayName="HTTP Request" EnableCookies="True" FileOverwrite="AutoRename" FollowRedirects="True" FormDataParts="[New List (Of FormDataPart) From _&#xA;{&#xA;&#x9;New FileFormDataPart(),&#xA;&#x9;New BinaryFormDataPart(),&#xA;&#x9;New TextFormDataPart()&#xA;}]" sap:VirtualizedContainerService.HintSize="486,277" sap2010:WorkflowViewState.IdRef="NetHttpRequest_2" InitialDelay="500" MaxRedirects="3" MaxRetryAfterDelay="30000" Method="GET" Multiplier="2" Parameters="[new System.Collections.Generic.Dictionary(Of System.String, System.String) From { { &quot;$filter&quot;, &quot;DocumentReferenceID eq'&quot;+ v_s_folio_dte+&quot;'&quot; },{ &quot;$format&quot;, &quot;json&quot; } }]" PreferRetryAfterValue="True" RequestBodyType="None" RequestUrl="[v_url_api_billing_document]" Result="[v_s_response]" RetryCount="3" RetryPolicyType="Basic" RetryStatusCodes="[New List (Of System.Net.HttpStatusCode) From _&#xA;{&#xA;&#x9;System.Net.HttpStatusCode.RequestTimeout,&#xA;&#x9;System.Net.HttpStatusCode.TooManyRequests,&#xA;&#x9;System.Net.HttpStatusCode.InternalServerError,&#xA;&#x9;System.Net.HttpStatusCode.BadGateway,&#xA;&#x9;System.Net.HttpStatusCode.ServiceUnavailable,&#xA;&#x9;System.Net.HttpStatusCode.GatewayTimeout&#xA;}]" SaveRawRequestResponse="False" SaveResponseAsFile="False" TextPayloadContentType="application/json" TextPayloadEncoding="UTF-8" TlsProtocol="Automatic" UseJitter="True" UseOsNegotiatedAuthCredentials="True">
       <uwah:NetHttpRequest.TimeoutInMiliseconds>
         <InArgument x:TypeArguments="s:Nullable(x:Int32)">
           <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="10000" />
@@ -199,17 +223,11 @@
       </uwah:NetHttpRequest.TimeoutInMiliseconds>
     </uwah:NetHttpRequest>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="486,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[v_s_response.TextContent]" />
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xD;&#xA;    ' Inicializar la variable de salida por seguridad&#xD;&#xA;    out_BillingDocument = String.Empty&#xD;&#xA;&#xD;&#xA;    ' 1. Validar que la cadena de entrada no esté vacía&#xD;&#xA;    If String.IsNullOrEmpty(in_ResponseString) Then&#xD;&#xA;        Return&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;    ' 2. Parsear directamente el JSON puro de SAP&#xD;&#xA;    Dim sapObj As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(in_ResponseString)&#xD;&#xA;    &#xD;&#xA;    ' Obtener de forma directa el token d.results usando la ruta de puntos&#xD;&#xA;    Dim resultsToken As Newtonsoft.Json.Linq.JToken = sapObj.SelectToken(&quot;d.results&quot;)&#xD;&#xA;    &#xD;&#xA;    If resultsToken IsNot Nothing AndAlso TypeOf resultsToken Is Newtonsoft.Json.Linq.JArray Then&#xD;&#xA;        Dim resultsArray As Newtonsoft.Json.Linq.JArray = CType(resultsToken, Newtonsoft.Json.Linq.JArray)&#xD;&#xA;        &#xD;&#xA;        ' 3. Recorrer la lista buscando la coincidencia con el DocumentReferenceID&#xD;&#xA;        For Each result As Newtonsoft.Json.Linq.JToken In resultsArray&#xD;&#xA;            Dim refIdToken As Newtonsoft.Json.Linq.JToken = result.SelectToken(&quot;DocumentReferenceID&quot;)&#xD;&#xA;            Dim billDocToken As Newtonsoft.Json.Linq.JToken = result.SelectToken(&quot;BillingDocument&quot;)&#xD;&#xA;            &#xD;&#xA;            If refIdToken IsNot Nothing AndAlso billDocToken IsNot Nothing Then&#xD;&#xA;                Dim currentRefID As String = refIdToken.ToString().Trim()&#xD;&#xA;                &#xD;&#xA;                ' Comparar el ID buscado con el de SAP libre de espacios&#xD;&#xA;                If currentRefID.Equals(in_DocumentReferenceID.Trim()) Then&#xD;&#xA;                    out_BillingDocument = billDocToken.ToString()&#xD;&#xA;                    Exit For ' Coincidencia encontrada: Rompemos el bucle&#xD;&#xA;                End If&#xD;&#xA;            End If&#xD;&#xA;        Next&#xD;&#xA;    End If&#xD;&#xA;&#xD;&#xA;Catch ex As Exception&#xD;&#xA;    ' Reportar cualquier fallo de formato al log de UiPath&#xD;&#xA;    Throw New Exception(&quot;Error en el análisis del JSON directo de SAP: &quot; &amp; ex.Message)&#xD;&#xA;End Try" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="486,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xA;    ' Inicializar la variable de salida por seguridad&#xA;    out_BillingDocument = String.Empty&#xA;&#xA;    ' 1. Validar que la cadena de entrada no esté vacía&#xA;    If String.IsNullOrEmpty(in_ResponseString) Then&#xA;        Return&#xA;    End If&#xA;&#xA;    ' 2. Parsear directamente el JSON puro de SAP&#xA;    Dim sapObj As Newtonsoft.Json.Linq.JObject = Newtonsoft.Json.Linq.JObject.Parse(in_ResponseString)&#xA;    &#xA;    ' Obtener de forma directa el token d.results usando la ruta de puntos&#xA;    Dim resultsToken As Newtonsoft.Json.Linq.JToken = sapObj.SelectToken(&quot;d.results&quot;)&#xA;    &#xA;    If resultsToken IsNot Nothing AndAlso TypeOf resultsToken Is Newtonsoft.Json.Linq.JArray Then&#xA;        Dim resultsArray As Newtonsoft.Json.Linq.JArray = CType(resultsToken, Newtonsoft.Json.Linq.JArray)&#xA;        &#xA;        ' 3. Recorrer la lista buscando la coincidencia con el DocumentReferenceID&#xA;        For Each result As Newtonsoft.Json.Linq.JToken In resultsArray&#xA;            Dim refIdToken As Newtonsoft.Json.Linq.JToken = result.SelectToken(&quot;DocumentReferenceID&quot;)&#xA;            Dim billDocToken As Newtonsoft.Json.Linq.JToken = result.SelectToken(&quot;BillingDocument&quot;)&#xA;            &#xA;            If refIdToken IsNot Nothing AndAlso billDocToken IsNot Nothing Then&#xA;                Dim currentRefID As String = refIdToken.ToString().Trim()&#xA;                &#xA;                ' Comparar el ID buscado con el de SAP libre de espacios&#xA;                If currentRefID.Equals(in_DocumentReferenceID.Trim()) Then&#xA;                    out_BillingDocument = billDocToken.ToString()&#xA;                    Exit For ' Coincidencia encontrada: Rompemos el bucle&#xA;                End If&#xA;            End If&#xA;        Next&#xA;    End If&#xA;&#xA;Catch ex As Exception&#xA;    ' Reportar cualquier fallo de formato al log de UiPath&#xA;    Throw New Exception(&quot;Error en el análisis del JSON directo de SAP: &quot; &amp; ex.Message)&#xA;End Try" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="486,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_ResponseString">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="v_s_response.TextContent" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_DocumentReferenceID">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="v_s_folio_dte" />
-        </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_BillingDocument">
-          <VisualBasicReference x:TypeArguments="x:String" ExpressionText="v_s_BillingDocument" />
-        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ResponseString">[v_s_response.TextContent]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_DocumentReferenceID">[v_s_folio_dte]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_BillingDocument">[v_s_BillingDocument]</OutArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
     <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,57" sap2010:WorkflowViewState.IdRef="CommentOut_4">
