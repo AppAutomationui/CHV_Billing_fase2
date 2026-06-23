@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="{x:Null}" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/ftp" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="SubeRespuestas" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/ftp" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -18,7 +18,6 @@
       <x:String>System.Xml.Serialization</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
-      <x:String>GlobalVariablesNamespace</x:String>
       <x:String>UiPath.FTP</x:String>
       <x:String>UiPath.FTP.Enums</x:String>
       <x:String>UiPath.FTP.Activities</x:String>
@@ -30,6 +29,11 @@
       <x:String>System.Xml.Linq</x:String>
       <x:String>System.Net.Mail</x:String>
       <x:String>UiPath.Core</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -93,14 +97,19 @@
       <AssemblyReference>NPOI.Core</AssemblyReference>
       <AssemblyReference>UiPath.FTP</AssemblyReference>
       <AssemblyReference>UiPath.FTP.Activities</AssemblyReference>
-      <AssemblyReference>GlobalVariables1hEV0lciB4</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence>
-    <Sequence DisplayName="Sube Respuestas" sap:VirtualizedContainerService.HintSize="486,400" sap2010:WorkflowViewState.IdRef="Sequence_8">
+  <Sequence sap:VirtualizedContainerService.HintSize="1282,1100" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Sube Respuestas" sap:VirtualizedContainerService.HintSize="554,1077" sap2010:WorkflowViewState.IdRef="Sequence_8">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="a_host_ftp" />
         <Variable x:TypeArguments="x:String" Name="a_username_ftp" />
@@ -111,18 +120,39 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <p:WithFtpSession ClientCertificatePassword="{x:Null}" ClientCertificatePath="{x:Null}" ClientCertificateSecurePassword="{x:Null}" Port="{x:Null}" SecurePassword="{x:Null}" CertificatePasswordInputModeSwitch="Password" ContinueOnError="False" DisplayName="Use FTP Connection" sap:VirtualizedContainerService.HintSize="452,317" Host="[a_host_ftp]" sap2010:WorkflowViewState.IdRef="WithFtpSession_1" Password="[a_pass_ftp]" PasswordInputModeSwitch="Password" ProxyPasswordInputModeSwitch="Password" UseSftp="True" Username="[a_username_ftp]">
+      <p:WithFtpSession ClientCertificatePassword="{x:Null}" ClientCertificatePath="{x:Null}" ClientCertificateSecurePassword="{x:Null}" SecurePassword="{x:Null}" CertificatePasswordInputModeSwitch="Password" ContinueOnError="False" DisplayName="Use FTP Connection" sap:VirtualizedContainerService.HintSize="520,994" Host="[parametro_IP_FTP]" sap2010:WorkflowViewState.IdRef="WithFtpSession_1" Password="[parametro_Pass_FTP]" PasswordInputModeSwitch="Password" Port="[parametro_Port]" ProxyPasswordInputModeSwitch="Password" UseSftp="True" Username="[parametro_User_FTP]">
         <p:WithFtpSession.Body>
           <ActivityAction x:TypeArguments="p:IFtpSession">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="p:IFtpSession" Name="FtpSession" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="518,767" sap2010:WorkflowViewState.IdRef="Sequence_9">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
+              <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="C:\CHV\Billing\interno\Fase2\out\" sap:VirtualizedContainerService.HintSize="484,707" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+                <ui:ForEachFileX.Body>
+                  <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
+                    <ActivityAction.Argument1>
+                      <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
+                    </ActivityAction.Argument1>
+                    <ActivityAction.Argument2>
+                      <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+                    </ActivityAction.Argument2>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,419" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <p:UploadFiles ContinueOnError="False" Create="False" DisplayName="Upload Files" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="UploadFiles_1" LocalPath="[CurrentFile.FullName]" Overwrite="True" Recursive="False" RemotePath="[parametro_Path_Billing_Out_FTP]" />
+                      <ui:MoveFile DestinationResource="{x:Null}" PathResource="{x:Null}" ContinueOnError="True" Destination="C:\CHV\Billing\interno\Fase2\out\Procesados\" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,184" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="True" Path="[CurrentFile.FullName]" />
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEachFileX.Body>
+              </ui:ForEachFileX>
             </Sequence>
           </ActivityAction>
         </p:WithFtpSession.Body>
