@@ -74,7 +74,7 @@
       <AssemblyReference>NPOI.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="NC" sap:VirtualizedContainerService.HintSize="918,1202" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="NC" sap:VirtualizedContainerService.HintSize="853,1202" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="v_b_G2" />
     </Sequence.Variables>
@@ -83,7 +83,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage sap2010:Annotation.AnnotationText="Encuentra el DocumentReferenceID usando la API" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="468,206" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Busca Folio DTE SAP&quot;]">
+    <ui:LogMessage sap2010:Annotation.AnnotationText="Encuentra el DocumentReferenceID usando la API" DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,206" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Busca Folio DTE SAP&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -92,9 +92,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <If Condition="True" sap:VirtualizedContainerService.HintSize="468,973" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="True" sap:VirtualizedContainerService.HintSize="452,973" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="466,753" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,753" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="v_s_url_get_sap_BillingDocument" />
             <Variable x:TypeArguments="x:String" Name="v_s_folio_dte" />
@@ -106,27 +106,27 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="432,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[v_s_folio_dte_DocumentReferenceID]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="x:String">["033-0000006511"]</InArgument>
+              <InArgument x:TypeArguments="x:String">["033-0000110656"]</InArgument>
             </Assign.Value>
           </Assign>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="API_SapDocument - Invoke Workflow File (TMP\API_SapDocument.xaml)" sap:VirtualizedContainerService.HintSize="432,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="NC API DTE\API_From_dte_to_SapDocument.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="API_SapDocument - Invoke Workflow File (TMP\API_SapDocument.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="NC API DTE\API_From_dte_to_SapDocument.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <OutArgument x:TypeArguments="x:String" x:Key="a_pedido" />
               <OutArgument x:TypeArguments="x:String" x:Key="v_s_BillingDocument">[v_s_BillingDocument]</OutArgument>
               <InArgument x:TypeArguments="x:String" x:Key="v_s_folio_dte">[v_s_folio_dte_DocumentReferenceID]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="432,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[v_s_url_get_sap_BillingDocument]" />
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="432,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[v_s_folio_dte]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[v_s_url_get_sap_BillingDocument]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[v_s_folio_dte]" />
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="466,90" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
