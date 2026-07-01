@@ -1,5 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Inicializacion" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System.ComponentModel.TypeConverter" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
+    <x:Property Name="a_ambiente" Type="InArgument(x:String)" />
     <x:Property Name="a_path_in" Type="OutArgument(x:String)" />
   </x:Members>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
@@ -115,16 +116,54 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1005,3671" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap:VirtualizedContainerService.HintSize="851,1463" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_parametros" />
+      <Variable x:TypeArguments="x:String" Name="v_s_config" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Inicialización" sap:VirtualizedContainerService.HintSize="630,3648" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <If Condition="[a_ambiente = &quot;QA&quot;]" sap:VirtualizedContainerService.HintSize="452,591" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_25">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_17">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[v_s_config]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["C:\ProgramData\Virtual\config_QA.txt"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_26">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="Assign_18">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[v_s_config]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["C:\ProgramData\Virtual\config.txt"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Ambiente &quot;  + v_s_config]" />
+    <Sequence DisplayName="Inicialización" sap:VirtualizedContainerService.HintSize="452,674" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="a_user" />
         <Variable x:TypeArguments="x:String" Name="text_config" />
@@ -134,17 +173,13 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xA;    ' 1. Validar que la ruta no llegue vacía desde UiPath&#xA;    If String.IsNullOrWhiteSpace(in_FilePath) Then&#xA;        Throw New ArgumentException(&quot;El argumento 'in_FilePath' llegó vacío o nulo al Invoke Code.&quot;)&#xA;    End If&#xA;&#xA;    ' 2. Inicializar la DataTable de salida&#xA;    out_DataTable = New System.Data.DataTable()&#xA;    out_DataTable.Columns.Add(&quot;Parametro&quot;, GetType(String))&#xA;    out_DataTable.Columns.Add(&quot;Valor&quot;, GetType(String))&#xA;&#xA;    ' 3. Verificar si el archivo realmente existe en esa ruta&#xA;    If System.IO.File.Exists(in_FilePath) Then&#xA;        Dim lines As String() = System.IO.File.ReadAllLines(in_FilePath)&#xA;        &#xA;        For Each line As String In lines&#xA;            If Not String.IsNullOrWhiteSpace(line) Then&#xA;                Dim colonIndex As Integer = line.IndexOf(&quot;:&quot;)&#xA;                &#xA;                ' Si encuentra el separador ':'&#xA;                If colonIndex &gt; 0 Then&#xA;                    Dim param As String = line.Substring(0, colonIndex).Trim().Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)&#xA;                    Dim valor As String = line.Substring(colonIndex + 1).Trim().Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)&#xA;                    &#xA;                    out_DataTable.Rows.Add(param, valor)&#xA;                End If&#xA;            End If&#xA;        Next&#xA;    Else&#xA;        Throw New System.IO.FileNotFoundException(&quot;El archivo no existe en la ruta especificada: &quot; &amp; in_FilePath)&#xA;    End If&#xA;&#xA;Catch ex As Exception&#xA;    ' Este bloque captura el error real y lo lanza hacia UiPath de forma clara&#xA;    Throw New Exception(&quot;ERROR DETECTADO EN INVOKE CODE -&gt; &quot; &amp; ex.Message &amp; &quot; [Detalles: &quot; &amp; ex.StackTrace &amp; &quot;]&quot;)&#xA;End Try" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="596,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+      <ui:InvokeCode ContinueOnError="{x:Null}" Code="Try&#xA;    ' 1. Validar que la ruta no llegue vacía desde UiPath&#xA;    If String.IsNullOrWhiteSpace(in_FilePath) Then&#xA;        Throw New ArgumentException(&quot;El argumento 'in_FilePath' llegó vacío o nulo al Invoke Code.&quot;)&#xA;    End If&#xA;&#xA;    ' 2. Inicializar la DataTable de salida&#xA;    out_DataTable = New System.Data.DataTable()&#xA;    out_DataTable.Columns.Add(&quot;Parametro&quot;, GetType(String))&#xA;    out_DataTable.Columns.Add(&quot;Valor&quot;, GetType(String))&#xA;&#xA;    ' 3. Verificar si el archivo realmente existe en esa ruta&#xA;    If System.IO.File.Exists(in_FilePath) Then&#xA;        Dim lines As String() = System.IO.File.ReadAllLines(in_FilePath)&#xA;        &#xA;        For Each line As String In lines&#xA;            If Not String.IsNullOrWhiteSpace(line) Then&#xA;                Dim colonIndex As Integer = line.IndexOf(&quot;:&quot;)&#xA;                &#xA;                ' Si encuentra el separador ':'&#xA;                If colonIndex &gt; 0 Then&#xA;                    Dim param As String = line.Substring(0, colonIndex).Trim().Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)&#xA;                    Dim valor As String = line.Substring(colonIndex + 1).Trim().Replace(&quot;&quot;&quot;&quot;, &quot;&quot;)&#xA;                    &#xA;                    out_DataTable.Rows.Add(param, valor)&#xA;                End If&#xA;            End If&#xA;        Next&#xA;    Else&#xA;        Throw New System.IO.FileNotFoundException(&quot;El archivo no existe en la ruta especificada: &quot; &amp; in_FilePath)&#xA;    End If&#xA;&#xA;Catch ex As Exception&#xA;    ' Este bloque captura el error real y lo lanza hacia UiPath de forma clara&#xA;    Throw New Exception(&quot;ERROR DETECTADO EN INVOKE CODE -&gt; &quot; &amp; ex.Message &amp; &quot; [Detalles: &quot; &amp; ex.StackTrace &amp; &quot;]&quot;)&#xA;End Try" DisplayName="Invoke Code" sap:VirtualizedContainerService.HintSize="416,197" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
         <ui:InvokeCode.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">
-            <Literal x:TypeArguments="x:String">C:\ProgramData\Virtual\config_QA.txt</Literal>
-          </InArgument>
-          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DataTable">
-            <VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="dt_parametros" />
-          </OutArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[v_s_config]</InArgument>
+          <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DataTable">[dt_parametros]</OutArgument>
         </ui:InvokeCode.Arguments>
       </ui:InvokeCode>
-      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_parametros]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="596,3031" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_parametros]" DisplayName="Lee parametros y asigna" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
         <ui:ForEachRow.Body>
           <ActivityAction x:TypeArguments="sd:DataRow">
             <ActivityAction.Argument>
@@ -407,13 +442,13 @@
         </ui:ForEachRow.Body>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:ForEachRow>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="596,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;stop&quot;]" />
-      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="596,57" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,143" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Parametros asignados&quot;]" />
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="CommentOut_1">
         <ui:CommentOut.Body>
           <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_14">
             <sap:WorkflowViewStateService.ViewState>
@@ -444,7 +479,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:CommentOut>
-      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="596,57" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="CommentOut_2">
         <ui:CommentOut.Body>
           <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,226" sap2010:WorkflowViewState.IdRef="Sequence_18">
             <sap:WorkflowViewStateService.ViewState>
@@ -475,7 +510,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:CommentOut>
-      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="596,48" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="CommentOut_3">
         <ui:CommentOut.Body>
           <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,108" sap2010:WorkflowViewState.IdRef="Sequence_19">
             <sap:WorkflowViewStateService.ViewState>

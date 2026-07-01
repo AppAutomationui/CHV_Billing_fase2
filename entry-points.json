@@ -4,7 +4,18 @@
     {
       "filePath": "Main.xaml",
       "uniqueId": "e6de78a2-587e-4be7-a1a0-453aa4b6e663",
-      "type": "process"
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "a_s_ambiente": {
+            "type": "string",
+            "x-default-expression": "\"QA\"",
+            "default": "QA"
+          }
+        },
+        "required": []
+      }
     }
   ]
 }

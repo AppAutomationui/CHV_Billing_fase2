@@ -1,6 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="API" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uwah="clr-namespace:UiPath.Web.Activities.Http;assembly=UiPath.Web.Activities" xmlns:uwahm="clr-namespace:UiPath.Web.Activities.Http.Models;assembly=UiPath.Web.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="a_pedido" Type="InArgument(x:String)" />
+    <x:Property Name="a_credit_request" Type="InArgument(x:String)" />
     <x:Property Name="v_s_BillingDocument" Type="OutArgument(x:String)" />
     <x:Property Name="v_s_folio_dte" Type="OutArgument(x:String)" />
   </x:Members>
@@ -131,15 +131,15 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Assign cREACION DE url" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[v_url_api_billing_document]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String" xml:space="preserve">[parametro_url_api_billing_document+"?$filter=ReferenceSDDocument eq '" +  a_pedido + "' and ReferenceSDDocumentItem eq '10'&amp;$expand=to_BillingDocument&amp;$format=json"]</InArgument>
+        <InArgument x:TypeArguments="x:String" xml:space="preserve">[parametro_url_api_billing_document+"?$filter=ReferenceSDDocument eq '" +  a_credit_request + "' and ReferenceSDDocumentItem eq '10'&amp;$expand=to_BillingDocument&amp;$format=json"]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_6">
+    <Assign DisplayName="Assign PARAMETRO" sap:VirtualizedContainerService.HintSize="450,175" sap2010:WorkflowViewState.IdRef="Assign_6">
       <Assign.To>
         <OutArgument x:TypeArguments="ss:SecureString">[v_pass_billing_document]</OutArgument>
       </Assign.To>
