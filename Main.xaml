@@ -132,9 +132,12 @@
       <AssemblyReference>System.Net.WebClient</AssemblyReference>
       <AssemblyReference>System.Net.Requests</AssemblyReference>
       <AssemblyReference>System.Net.ServicePoint</AssemblyReference>
+      <AssemblyReference>System.CodeDom</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1188,6314" sap2010:WorkflowViewState.IdRef="Sequence_6">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="985,6161" sap2010:WorkflowViewState.IdRef="Sequence_6">
     <Sequence.Variables>
       <Variable x:TypeArguments="ss:SecureString" Name="a_pass" />
       <Variable x:TypeArguments="x:String" Name="a_path_in" />
@@ -593,8 +596,15 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:LogMessage>
     </Sequence>
-    <ui:BuildDataTable DataTable="[dt_respuesta]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="590,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Sociedad&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Tipo_x0020_de_x0020_Comprobante&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Tipo_x0020_de_x0020_proceso&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Pre-Billing&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Pedido&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Archivo&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-    <ui:ForEachFileX DisplayName="Procesamiento de Archivos" Folder="[parametro_a_path_in]" sap:VirtualizedContainerService.HintSize="590,6094" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
+    <ui:BuildDataTable DataTable="[dt_respuesta]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="590,57" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Sociedad&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Tipo_x0020_de_x0020_Comprobante&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Tipo_x0020_de_x0020_proceso&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Pre-Billing&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Pedido&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Archivo&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:BuildDataTable>
+    <ui:ForEachFileX DisplayName="Procesamiento de Archivos" Folder="[parametro_a_path_in]" sap:VirtualizedContainerService.HintSize="590,5976" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst" SkipFolderWithoutPermission="False">
       <ui:ForEachFileX.Body>
         <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
           <ActivityAction.Argument1>
@@ -603,19 +613,20 @@
           <ActivityAction.Argument2>
             <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
           </ActivityAction.Argument2>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="556,5798" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="556,5680" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="v_file_face_1" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="522,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Archivo Respuesta Fase 1 &quot; + CurrentFile.Name]">
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="522,57" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Archivo Respuesta Fase 1 &quot; + CurrentFile.Name]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
@@ -796,8 +807,8 @@
                         </Sequence>
                       </If.Else>
                     </If>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Info" Message="[Currentrow.item(&quot;Sociedad&quot;).tostring + &quot; &quot;+ Currentrow.item(&quot;Tipo de Comprobante&quot;).tostring +&quot; &quot; + Currentrow.item(&quot;Tipo de proceso&quot;).tostring + &quot; &quot;+ Currentrow.item(&quot;Pre-Billing&quot;).tostring+&quot; &quot;+ Currentrow.item(&quot;Pedido&quot;).tostring + &quot; &quot; + &quot; &quot; + v_s_folio_dte]" />
-                    <If Condition="[String.IsNullOrWhiteSpace(v_s_folio_dte) OrElse Not v_s_folio_dte.Trim.StartsWith(&quot;033-&quot;)]" sap:VirtualizedContainerService.HintSize="452,796" sap2010:WorkflowViewState.IdRef="If_1">
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Info" Message="[String.Join(vbTab, {CurrentRow.Item(&quot;Sociedad&quot;).ToString, CurrentRow.Item(&quot;Tipo de Comprobante&quot;).ToString, CurrentRow.Item(&quot;Tipo de proceso&quot;).ToString, CurrentRow.Item(&quot;Pre-Billing&quot;).ToString, CurrentRow.Item(&quot;Pedido&quot;).ToString, v_s_folio_dte})]" />
+                    <If Condition="[String.IsNullOrWhiteSpace(v_s_folio_dte) OrElse Not (v_s_folio_dte.Trim.StartsWith(&quot;033-&quot;) OrElse v_s_folio_dte.Trim.StartsWith(&quot;061-&quot;) OrElse v_s_folio_dte.Trim.StartsWith(&quot;034-&quot;))]" sap:VirtualizedContainerService.HintSize="452,796" sap2010:WorkflowViewState.IdRef="If_1">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -811,7 +822,7 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="No se encontró DTE por lo que el registro del archivo se agrega a un DT para crear otro archivo con los pendientes" ArrayRow="[{Currentrow.item(&quot;Sociedad&quot;).tostring, Currentrow.item(&quot;Tipo de Comprobante&quot;).tostring, Currentrow.item(&quot;Tipo de proceso&quot;).tostring, Currentrow.item(&quot;Pre-Billing&quot;).tostring, Currentrow.item(&quot;Pedido&quot;).tostring}]" DataTable="[dt_resultado_file_pendientes_fase_2]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="416,273" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
+                          <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="No se encontró DTE por lo que el registro del archivo se agrega a un DT para crear un archivo con los registros pendientes" ArrayRow="[{Currentrow.item(&quot;Sociedad&quot;).tostring, Currentrow.item(&quot;Tipo de Comprobante&quot;).tostring, Currentrow.item(&quot;Tipo de proceso&quot;).tostring, Currentrow.item(&quot;Pre-Billing&quot;).tostring, Currentrow.item(&quot;Pedido&quot;).tostring}]" DataTable="[dt_resultado_file_pendientes_fase_2]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="416,273" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -827,7 +838,7 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Se encontró DTE por lo que el registro del archivo se agrega a un DT para crear otro archivo con los pendientes" ArrayRow="[{Currentrow.item(&quot;Sociedad&quot;).tostring, Currentrow.item(&quot;Tipo de Comprobante&quot;).tostring, Currentrow.item(&quot;Tipo de proceso&quot;).tostring, Currentrow.item(&quot;Pre-Billing&quot;).tostring, v_s_folio_dte}]" DataTable="[dt_resultado_ok_file_fase_2]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="416,273" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
+                          <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Se encontró DTE 33 o 061 por lo que el registro se agrega a un DT  que será incluido en los registros pendientes " ArrayRow="[{Currentrow.item(&quot;Sociedad&quot;).tostring, Currentrow.item(&quot;Tipo de Comprobante&quot;).tostring, Currentrow.item(&quot;Tipo de proceso&quot;).tostring, Currentrow.item(&quot;Pre-Billing&quot;).tostring, v_s_folio_dte}]" DataTable="[dt_resultado_ok_file_fase_2]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="416,273" sap2010:WorkflowViewState.IdRef="AddDataRow_2">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
